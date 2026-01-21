@@ -1,0 +1,168 @@
+:root {
+    --bg-color: #0a0a12;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-color: #ffffff;
+    --highlight: #00f2ff; /* Neon Cyan */
+    --accent: #7000ff;    /* Deep Purple */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- 1. Background Orbs --- */
+.background-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+}
+.orb-1 { width: 300px; height: 300px; background: var(--highlight); top: 10%; left: -50px; opacity: 0.2; }
+.orb-2 { width: 300px; height: 300px; background: var(--accent); bottom: 10%; right: -50px; opacity: 0.2; }
+
+/* --- 2. Navigation --- */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    z-index: 1000;
+    background: rgba(10, 10, 18, 0.8); /* Darker for readability */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo { 
+    font-weight: 700; 
+    letter-spacing: 1px; 
+    color: var(--highlight); 
+    font-size: 1.2rem;
+}
+
+.nav-links { list-style: none; display: flex; gap: 1.5rem; }
+.nav-links a { text-decoration: none; color: white; font-size: 0.9rem; }
+
+/* --- 3. The "Bootstrap" Centering Fix --- */
+.section {
+    min-height: 100vh;
+    width: 100%;
+    padding: 80px 20px; /* Top padding for navbar, side padding for mobile */
+    
+    /* This centers everything perfectly like Bootstrap */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+}
+
+/* --- 4. The Glass Card --- */
+.glass-card {
+    background: rgba(30, 30, 40, 0.6); /* Darker tint for better contrast */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    
+    /* Layout */
+    width: 100%;
+    max-width: 500px; /* Limits width on desktop */
+    padding: 2.5rem;
+    text-align: center;
+}
+
+/* Profile Image */
+.profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--highlight);
+    margin: 0 auto 1.5rem auto; /* Centers the image */
+    display: block;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+}
+
+/* Typography */
+h1 { font-size: 2.2rem; margin-bottom: 0.5rem; line-height: 1.2; }
+.highlight { color: var(--highlight); }
+h3 { font-size: 1.1rem; color: #ccc; margin-bottom: 1rem; font-weight: 400; }
+p { font-size: 0.95rem; color: #bbb; margin-bottom: 1.5rem; }
+
+/* Buttons & Socials */
+.hero-socials { font-size: 1.8rem; margin-top: 1rem; }
+.hero-socials a { color: white; margin: 0 12px; transition: 0.3s; }
+.hero-socials a:hover { color: var(--highlight); }
+
+.btn-sm {
+    display: inline-block;
+    color: var(--highlight);
+    border: 1px solid var(--highlight);
+    padding: 10px 25px;
+    border-radius: 50px; /* Pill shape */
+    text-decoration: none;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.btn-sm:active { background: var(--highlight); color: black; transform: scale(0.95); }
+
+/* --- 5. Projects Grid --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to 1 column */
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.project-card {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- 6. Mobile Specific Adjustments --- */
+@media (max-width: 768px) {
+    .nav-links { display: none; } /* Hides menu text on mobile for cleanliness */
+    
+    .section {
+        padding: 100px 15px 50px 15px; /* Adjust padding for mobile screens */
+    }
+
+    .glass-card {
+        padding: 2rem 1.5rem; /* Slightly less padding inside the card */
+    }
+
+    h1 { font-size: 1.8rem; }
+    
+    /* Project grid stays 1 column on mobile */
+    .projects-grid { grid-template-columns: 1fr; }
+}
+
+/* Desktop Grid */
+@media (min-width: 769px) {
+    .projects-grid { grid-template-columns: 1fr 1fr; } /* 2 columns on laptop */
+}
+
+/* Scroll Animations */
+.hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+.show { opacity: 1; transform: translateY(0); }
